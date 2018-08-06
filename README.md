@@ -1,3 +1,4 @@
 # Parse any JSON
 
-**app.component.ts** at line **33** show how to dive in JSON response and get fraction of JSON
+- file **movies.php** must be available on `http://localhost:4003/movies.php`
+- **app.component.ts** at line **14 & 15** show how to dive in JSON response

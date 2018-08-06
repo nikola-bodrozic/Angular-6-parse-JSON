@@ -7,8 +7,8 @@ import { Observable } from 'rxjs/internal/Observable';
   template: `
   <table>
     <tr>
-      <th>login</th>
-      <th>repos</th>
+      <th>guid</th>
+      <th>friend name</th>
     </tr>
     <tr *ngFor="let r of repoName$ | async">
       <td>{{ r.guid }}</td>
@@ -24,10 +24,6 @@ export class AppComponent implements OnInit {
   constructor(private gd: GetDataService) { }
 
   ngOnInit() {
-    this.getRepos();
-  }
-
-  getRepos() {
     this.repoName$ = this.gd.getRepos();
   }
 }
