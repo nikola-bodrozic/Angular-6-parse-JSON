@@ -10,9 +10,9 @@ import { Observable } from 'rxjs/internal/Observable';
       <th>login</th>
       <th>repos</th>
     </tr>
-    <tr *ngFor="let r of repoName">
-      <td>{{ r.owner.login }}</td>
-      <td>{{ r.owner.repos_url }}</td>
+    <tr *ngFor="let r of repoName$ | async">
+      <td>{{ r.guid }}</td>
+      <td>{{ r.friends[1].name }}</td>
     </tr>
   </table>
   `,
@@ -20,7 +20,7 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class AppComponent implements OnInit {
   title = 'app';
-  repoName: any;
+  repoName$: Observable<any>;
   constructor(private gd: GetDataService) { }
 
   ngOnInit() {
@@ -28,11 +28,6 @@ export class AppComponent implements OnInit {
   }
 
   getRepos() {
-    this.gd.getRepos().subscribe(
-        data => {
-          this.repoName = data['items'];
-          console.log(this.repoName[5].name);
-        }
-    );
+    this.repoName$ = this.gd.getRepos();
   }
 }
